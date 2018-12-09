@@ -3,6 +3,7 @@ package com.kalomiris.api.sandbox.api.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,12 @@ public class NumbersController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<SingleNumberResource> getRandomNumber() {
 		double randomNumber = Math.random();
+		return new ResponseEntity<>(new SingleNumberResource(randomNumber), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/{max}", method = RequestMethod.GET)
+	public ResponseEntity<SingleNumberResource> getRandomNumberUpTo(@PathVariable Double max) {
+		double randomNumber = (Math.random()*(max+1));;
 		return new ResponseEntity<>(new SingleNumberResource(randomNumber), HttpStatus.OK);
 	}
 }
