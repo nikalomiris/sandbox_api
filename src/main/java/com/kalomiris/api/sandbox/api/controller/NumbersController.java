@@ -15,13 +15,13 @@ import com.kalomiris.api.sandbox.api.resource.SingleNumberResource;
 @RequestMapping(value = "/numbers", produces = "application/json")
 public class NumbersController {
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/getRandom", method = RequestMethod.GET)
 	public ResponseEntity<SingleNumberResource> getRandomNumber() {
 		double randomNumber = Math.random();
 		return new ResponseEntity<>(new SingleNumberResource(randomNumber), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{max}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getRandomUpTo/{max}", method = RequestMethod.GET)
 	public ResponseEntity<SingleNumberResource> getRandomNumberUpTo(@PathVariable Double max) {
 		double randomNumber = (Math.random()*(max+1));;
 		return new ResponseEntity<>(new SingleNumberResource(randomNumber), HttpStatus.OK);
