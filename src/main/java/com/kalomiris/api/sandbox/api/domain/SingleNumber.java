@@ -4,6 +4,10 @@ public class SingleNumber implements Identifiable {
 	
 	private Long id;
 	private double value;
+	
+	public SingleNumber(double value) {
+		this.value = value;
+	}
 
 	@Override
 	public Long getId() {
