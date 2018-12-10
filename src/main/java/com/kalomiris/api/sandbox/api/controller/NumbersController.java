@@ -23,7 +23,13 @@ public class NumbersController {
 	
 	@RequestMapping(value = "/getRandomUpTo/{max}", method = RequestMethod.GET)
 	public ResponseEntity<SingleNumberResource> getRandomNumberUpTo(@PathVariable Double max) {
-		double randomNumber = (Math.random()*(max+1));;
+		double randomNumber = (Math.random()*(max+1));
+		return new ResponseEntity<>(new SingleNumberResource(randomNumber), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getRandomInRange/{min}/{max}", method = RequestMethod.GET)
+	public ResponseEntity<SingleNumberResource> getRandomNumberUpTo(@PathVariable Double min, @PathVariable Double max) {
+		double randomNumber = (Math.random()*((max - min) + 1) + min);
 		return new ResponseEntity<>(new SingleNumberResource(randomNumber), HttpStatus.OK);
 	}
 }
